@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Model</title>
+</head>
+<body>
+  <h2>Test Message Classification</h2>
+  <form id="predictForm" action="predict" method="post">
+    <textarea name="text" rows="5" cols="70" placeholder="Paste SMS here" required></textarea><br>
+    <button type="submit">Check Message</button>
+  </form>
+
+  <pre id="result" style="margin-top:16px;background:#f4f4f4;padding:10px;"></pre>
+
+  <p><a href="train">Go to Training Interface</a></p>
+
+  <script>
+    const form = document.getElementById('predictForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const res = await fetch('predict', { method: 'POST', body: formData });
+      const data = await res.json();
+      result.textContent = JSON.stringify(data, null, 2);
+    });
+  </script>
+</body>
+</html>

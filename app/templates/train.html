@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Train Model</title>
+</head>
+<body>
+  <h2>Upload Training TXT File</h2>
+  <p>Format example: <code>__label__clear AcmeBank: Your OTP is 1234</code></p>
+  <form action="train" enctype="multipart/form-data" method="post">
+    <input name="file" type="file" accept=".txt" required>
+    <button type="submit">Train Model</button>
+  </form>
+  <p><a href="test">Go to Test Interface</a></p>
+</body>
+</html>

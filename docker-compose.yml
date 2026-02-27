@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  message-trust-ai-platform:
+    build: .
+    container_name: message-trust-ai-platform
+    ports:
+      - "8093:8000"
+    restart: unless-stopped
