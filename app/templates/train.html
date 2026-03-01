@@ -24,13 +24,16 @@
   <div class="card">
     <h2>Upload Training Data</h2>
     <p>Upload a <code>.txt</code> file. Format:<br><code>__label__clear AcmeBank: Your OTP is 1234</code></p>
+    <div style="background: #fffbeb; color: #b45309; padding: 12px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 20px; border: 1px solid #fde68a;">
+      <strong>Note:</strong> Uploading a new file will completely overwrite the existing trained model. The new model will be applied instantly without needing a server restart!
+    </div>
     <form action="train" enctype="multipart/form-data" method="post">
       <input name="file" type="file" accept=".txt" required>
       <button type="submit">Train Model</button>
     </form>
     <div class="nav">
       <a href="test">Go to Testing &rarr;</a><br><br>
-      <a href="/">&larr; Back to Home</a>
+      <a href="/message-trust-ai/">&larr; Back to Home</a>
     </div>
   </div>
 </body>

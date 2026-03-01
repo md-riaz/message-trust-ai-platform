@@ -1,7 +1,7 @@
 import os
 import fasttext
 
-MODEL_PATH = "app/models/clear_sender_model.bin"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "models", "clear_sender_model.bin")
 
 
 def train_model(training_file_path: str) -> bool:

@@ -8,8 +8,8 @@ from app.trainer import train_model
 from app.predictor import load_model, predict_message
 
 app = FastAPI(title="Message Trust AI Platform")
-templates = Jinja2Templates(directory="app/templates")
-os.makedirs("app/models", exist_ok=True)
+templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
+os.makedirs(os.path.join(os.path.dirname(__file__), "models"), exist_ok=True)
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -24,7 +24,7 @@ def train_page(request: Request):
 
 @app.post("/train")
 async def upload_and_train(file: UploadFile = File(...)):
-    file_path = f"app/models/{file.filename}"
+    file_path = os.path.join(os.path.dirname(__file__), "models", file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
