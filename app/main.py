@@ -14,7 +14,7 @@ os.makedirs("app/models", exist_ok=True)
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("train.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.get("/train", response_class=HTMLResponse)
