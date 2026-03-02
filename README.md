@@ -1,24 +1,61 @@
 # Message Trust AI Platform
 
-Dockerized FastAPI app for:
-1. Uploading labeled TXT data and training a FastText model
-2. Testing SMS messages against the trained model
+A fast, lightweight, and responsive AI classification platform designed to determine whether an SMS message sender is "clear" (legitimate) or "unclear" (spam/suspicious). Built with FastAPI, FastText, and Docker.
 
-## URL
-- /train
-- /test
+## Features
+- **Train Custom Models:** Easily upload `.txt` training files to replace and retrain the classification model on the fly.
+- **Instant Testing:** Web interface to paste SMS messages and receive instant JSON predictions.
+- **Bulk Analysis API:** A dedicated REST endpoint to analyze multiple messages simultaneously.
+- **Persistent Storage:** Models are saved to the host filesystem using Docker volumes, surviving container restarts.
+- **Mobile-Friendly UI:** Clean, modern, responsive card-based design.
 
-When deployed behind the current reverse proxy:
-- https://openclaw.mdriaz.com.bd/message-trust-ai/
-- https://openclaw.mdriaz.com.bd/message-trust-ai/test
+## Screenshots
 
-## Training format
-Each line in TXT:
+### Home & API Documentation
+![Home](assets/home.png)
 
-__label__clear AcmeBank: Your OTP is 1234
-__label__unclear Your OTP is 1234
+### Training Interface
+![Training](assets/train.png)
 
-## Deploy
-```bash
-docker compose up -d --build
+### Testing Interface
+![Testing](assets/test.png)
+
+## Installation & Running (Docker)
+
+1. Clone the repository.
+2. Build and start the container:
+   ```bash
+   docker compose up -d --build
+   ```
+3. Access the platform at `http://localhost:8093`
+
+## API Usage
+
+### Bulk Analysis
+**Endpoint:** `POST /analyze`
+
+**Request Body Example:**
+```json
+{
+  "messages": [
+    { "id": "1", "content": "AcmeBank: Your OTP is 1234" },
+    { "id": "2", "content": "You have won a free iPhone click here" }
+  ]
+}
+```
+
+**Response Example:**
+```json
+{
+  "results": [
+    {
+      "id": "1",
+      "content": "AcmeBank: Your OTP is 1234",
+      "prediction": [
+        { "label": "__label__clear", "probability": 0.9998 },
+        { "label": "__label__unclear", "probability": 0.0001 }
+      ]
+    }
+  ]
+}
 ```
