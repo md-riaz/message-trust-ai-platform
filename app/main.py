@@ -71,6 +71,7 @@ async def analyze_messages(req: AnalyzeRequest):
             
         results.append({
             "id": msg.id,
+            "content": msg.content,
             "prediction": pred
         })
         

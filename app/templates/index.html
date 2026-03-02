@@ -27,6 +27,35 @@
       <a class="btn" href="train">Open Training</a>
       <a class="btn secondary" href="test">Open Testing</a>
     </div>
+
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: left;">
+      <h3 style="margin-top: 0; color: #111827; font-size: 1.1rem;">API Documentation</h3>
+      <p style="font-size: 0.9rem; margin-bottom: 10px;"><strong>POST</strong> <code>/analyze</code></p>
+      <p style="font-size: 0.85rem; color: #4b5563;">Analyze multiple messages at once. Pass an array of messages with IDs.</p>
+      
+      <div style="background: #1f2937; color: #e5e7eb; padding: 12px; border-radius: 8px; font-size: 0.8rem; overflow-x: auto; margin-bottom: 10px;">
+<pre style="margin: 0;">{
+  "messages": [
+    { "id": "1", "content": "Sample message text" }
+  ]
+}</pre>
+      </div>
+
+      <p style="font-size: 0.85rem; color: #4b5563; margin-bottom: 5px;">Response:</p>
+      <div style="background: #1f2937; color: #e5e7eb; padding: 12px; border-radius: 8px; font-size: 0.8rem; overflow-x: auto;">
+<pre style="margin: 0;">{
+  "results": [
+    {
+      "id": "1",
+      "content": "Sample message text",
+      "prediction": [
+        { "label": "__label__clear", "probability": 0.99 }
+      ]
+    }
+  ]
+}</pre>
+      </div>
+    </div>
   </div>
 </body>
 </html>
